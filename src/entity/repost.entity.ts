@@ -7,10 +7,14 @@ export class Repost {
     @PrimaryGeneratedColumn()
     id: number
 
-    @ManyToOne(() => User, (user) => user.repost)
+    @ManyToOne(() => User, (user) => user.repost, {
+        cascade: true,
+    })
     user: User
 
-    @ManyToOne(() => Post, (post) => post.repost)
+    @ManyToOne(() => Post, (post) => post.repost, {
+        cascade: true,
+    })
     post: Post
 
     @CreateDateColumn()

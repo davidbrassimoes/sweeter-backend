@@ -3,7 +3,11 @@ import { Room } from "../../entity/chat-room.entity";
 import { Request, Response } from "express";
 
 const action = async (req: Request, res: Response) => {
-    const rooms = await myDataSource.getRepository(Room).find();
+    const rooms = await myDataSource.getRepository(Room).find({
+        relations: {
+            userInRoom: true,
+        },
+    });
     return res.json(rooms)
 };
 

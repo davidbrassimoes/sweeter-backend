@@ -13,9 +13,13 @@ export class Message {
     @CreateDateColumn()
     createdAt: Date
 
-    @ManyToOne(() => User, (user) => user.message)
+    @ManyToOne(() => User, (user) => user.message, {
+        cascade: true,
+    })
     createdBy: User
 
-    @ManyToOne(() => Room, (room) => room.message)
+    @ManyToOne(() => Room, (room) => room.message, {
+        cascade: true,
+    })
     room: Room
 }

@@ -10,14 +10,24 @@ export class Post {
     @Column()
     content: string
 
-    @ManyToOne(() => User, (user) => user.post)
+    @ManyToOne(() => User, (user) => user.post, {
+        cascade: true,
+    })
     user: User
 
     @CreateDateColumn()
     createdAt: Date
 
-    @ManyToMany(() => Tag)
+    @ManyToMany(() => Tag, {
+        cascade: true,
+    })
     @JoinTable()
     tagged: Tag[]
+
+    @ManyToMany(() => User, {
+        cascade: true,
+    })
+    @JoinTable()
+    sweeted: User[]
 
 }

@@ -22,15 +22,21 @@ export class User {
     @CreateDateColumn()
     createdAt: Date
 
-    @ManyToMany(() => User)
+    @ManyToMany(() => User, {
+        cascade: true,
+    })
     @JoinTable()
     followsUser: User[]
 
-    @ManyToMany(() => Tag)
+    @ManyToMany(() => Tag, {
+        cascade: true,
+    })
     @JoinTable()
     followsTag: Tag[]
 
-    @ManyToMany(() => Post)
+    @ManyToMany(() => Post, {
+        cascade: true,
+    })
     @JoinTable()
     likes: Post[]
 

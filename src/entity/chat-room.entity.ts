@@ -12,7 +12,9 @@ export class Room {
     @CreateDateColumn()
     createdAt: Date
 
-    @ManyToMany(() => User)
+    @ManyToMany(() => User, {
+        cascade: true,
+    })
     @JoinTable()
     userInRoom: User[]
 

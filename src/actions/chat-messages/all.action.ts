@@ -3,7 +3,12 @@ import { Message } from "../../entity/chat-message.entity";
 import { Request, Response } from "express";
 
 const action = async (req: Request, res: Response) => {
-    const messages = await myDataSource.getRepository(Message).find();
+    const messages = await myDataSource.getRepository(Message).find({
+        relations: {
+            createdBy: true,
+            room: true
+        },
+    });
     return res.json(messages)
 };
 

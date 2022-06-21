@@ -6,6 +6,7 @@ const action = async (req: Request, res: Response) => {
     console.log('TEST!', req.params.id);
     const post = await myDataSource.getRepository(Post).findOneBy({
         id: +req.params.id,
+
     });
     return res.send(post);
 }
