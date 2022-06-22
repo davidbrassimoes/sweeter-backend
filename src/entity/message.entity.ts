@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne } from "typeorm"
-import { Room } from "./chat-room.entity"
+import { Room } from "./room.entity"
 import { User } from "./user.entity"
 
 @Entity()

@@ -1,15 +1,14 @@
 import { myDataSource } from "../../app-data-source";
-import { Message } from "../../entity/chat-message.entity";
+import { Room } from "../../entity/room.entity";
 import { Request, Response } from "express";
 
 const action = async (req: Request, res: Response) => {
-    const messages = await myDataSource.getRepository(Message).find({
+    const rooms = await myDataSource.getRepository(Room).find({
         relations: {
-            createdBy: true,
-            room: true
+            userInRoom: true,
         },
     });
-    return res.json(messages)
+    return res.json(rooms)
 };
 
 export default action;

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { all, create, detail, remove, update } from "../actions/chat-rooms";
+import { all, create, detail, remove, update } from "../actions/rooms";
 
 const routes = Router();
 

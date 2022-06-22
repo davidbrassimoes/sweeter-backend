@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { myDataSource } from "../../app-data-source";
-import { Message } from "../../entity/chat-message.entity";
+import { Message } from "../../entity/message.entity";
 
 const action = async (req: Request, res: Response) => {
     console.log('TEST!!', req.body);

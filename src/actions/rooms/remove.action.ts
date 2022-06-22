@@ -1,9 +1,9 @@
 import { myDataSource } from "../../app-data-source";
-import { Message } from "../../entity/chat-message.entity";
+import { Room } from "../../entity/room.entity";
 import { Request, Response } from "express";
 
 const action = async function (req: Request, res: Response) {
-    const results = await myDataSource.getRepository(Message).delete(req.params.id);
+    const results = await myDataSource.getRepository(Room).delete(req.params.id);
     return res.send(results)
 };
 

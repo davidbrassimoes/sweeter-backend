@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { myDataSource } from "../../app-data-source";
-import { Room } from "../../entity/chat-room.entity";
+import { Room } from "../../entity/room.entity";
 
 
 const action = async (req: Request, res: Response) => {
