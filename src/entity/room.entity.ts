@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToMany, JoinTable } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToMany, JoinTable, ManyToOne } from "typeorm"
 import { User } from "./user.entity"
 
 @Entity()
@@ -11,6 +11,11 @@ export class Room {
 
     @CreateDateColumn()
     createdAt: Date
+
+    @ManyToOne(() => User, (user) => user.message, {
+        cascade: true,
+    })
+    createdBy: User
 
     @ManyToMany(() => User, {
         cascade: true,
