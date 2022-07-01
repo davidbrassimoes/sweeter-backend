@@ -4,8 +4,13 @@ import { Request, Response } from "express";
 
 const action = async (req: Request, res: Response) => {
     console.log('TEST!', req.params.id);
-    const post = await myDataSource.getRepository(Post).findOneBy({
-        id: +req.params.id,
+    const post = await myDataSource.getRepository(Post).find({
+        where: { id: +req.params.id },
+        relations: {
+            user: true,
+            sweeted: true,
+            tagged: true
+        }
 
     });
     return res.send(post);
