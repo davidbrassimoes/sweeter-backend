@@ -1,12 +1,20 @@
 import { Request, Response } from "express";
-import { myDataSource } from "../../app-data-source";
-import { User } from "../../entity/user.entity";
+import { register } from "../../services/auth.service"
 
 const action = async (req: Request, res: Response) => {
     console.log('TEST!!', req.body);
-    const user = await myDataSource.getRepository(User).create(req.body);
-    const results = await myDataSource.getRepository(User).save(user);
-    return res.send(results)
+    try {
+        const { username, password, email, bio } = req.body;
+        const token = await register(username, password, email, bio);
+        console.log("TOKEN: ", token);
+        return res.json({ token });
+    } catch (e) {
+        return res.status(400).json({
+            code: 400,
+            error: 'Bad request',
+            message: e.message
+        });
+    }
 };
 
 export default action;
