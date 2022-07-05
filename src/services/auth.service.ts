@@ -33,7 +33,7 @@ export async function register(username: string, password: string, email: string
 function createToken(user: User): string {
     const token = sign({
         exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 180),
-        username: user.email,
+        username: user.username,
         email: user.email,
         user_id: user.id
     }, `${process.env.LOG_KEY}`);
