@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { attemptLogin } from "../../services/auth.service";
+import { attemptLogin } from "../../services/security/auth.service";
 
 const action = async (req: Request, res: Response) => {
     try {

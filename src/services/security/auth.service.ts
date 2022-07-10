@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { sign } from 'jsonwebtoken';
-import { myDataSource } from "../app-data-source";
-import { User } from "../entity/user.entity";
+import { myDataSource } from "../../app-data-source";
+import { User } from "../../entity/user.entity";
 
 export async function attemptLogin(username: string, password: string): Promise<string> {
     const repository = myDataSource.getRepository(User);

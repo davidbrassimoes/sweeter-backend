@@ -10,6 +10,8 @@ const action = async (req: Request, res: Response) => {
             likes: true
         },
     });
+    console.log(req.headers.authorization, " -all.action.ts");
+    console.log(" -all.action.ts 2", req.user);
     return res.json(users)
 }
 
