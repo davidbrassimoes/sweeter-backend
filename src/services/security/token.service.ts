@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { request } from "http";
 import { JwtPayload, verify, VerifyErrors } from "jsonwebtoken";
 import { myDataSource } from "../../app-data-source";
 import { User } from "../../entity/user.entity";
@@ -7,7 +6,7 @@ import { User } from "../../entity/user.entity";
 
 const publicEndpoints = [
     '/users/login',
-    '/users/signup',
+    '/users/create',
     '/posts'
 ];
 
