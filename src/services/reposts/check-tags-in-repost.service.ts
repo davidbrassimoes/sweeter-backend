@@ -1,4 +1,4 @@
-import { Post } from "../../entity/post.entity";
+import { Repost } from "../../entity/repost.entity";
 import { Tag } from "../../entity/tag.entity";
 import { myDataSource } from "../../app-data-source";
 
@@ -13,18 +13,18 @@ async function createTag(tags: Tag[]) {
 
 }
 
-async function updatePostWithTags(thisPost: Post, tags: Tag[]) {
-    const getMyPost = await myDataSource.getRepository(Post).findOneBy({
+async function updatePostWithTags(thisPost: Repost, tags: Tag[]) {
+    const getMyPost = await myDataSource.getRepository(Repost).findOneBy({
         id: +thisPost.id,
     });
     getMyPost.tagged = tags
-    const results = await myDataSource.getRepository(Post).save(getMyPost);
+    const results = await myDataSource.getRepository(Repost).save(getMyPost);
     console.log("UPDATED:", results)
     return results
 }
 
 
-export async function checkTags(post: Post) {
+export async function checkTags(post: Repost) {
 
     const { content, id } = post
 
