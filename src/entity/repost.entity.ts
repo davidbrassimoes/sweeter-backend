@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, ManyToMany, JoinTable } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, ManyToMany, JoinTable, Column } from "typeorm"
 import { Post } from "./post.entity"
 import { Tag } from "./tag.entity"
 import { User } from "./user.entity"
@@ -7,6 +7,9 @@ import { User } from "./user.entity"
 export class Repost {
     @PrimaryGeneratedColumn()
     id: number
+
+    @Column()
+    content: string
 
     @ManyToOne(() => User, (user) => user.repost, {
         cascade: true,
