@@ -16,7 +16,7 @@ export async function attemptLogin(username: string, password: string): Promise<
     return createToken(user);
 }
 
-export async function register(username: string, password: string, email: string, bio: string): Promise<string> {
+export async function register(username: string, password: string, email: string, bio: string): Promise<Object> {
 
     const user = await myDataSource.getRepository(User).create();
 
@@ -26,11 +26,12 @@ export async function register(username: string, password: string, email: string
     user.bio = bio;
 
     await myDataSource.getRepository(User).save(user);
-
-    return createToken(user);
+    const token = createToken(user)
+    console.log("where is user?", user, token)
+    return ({ token, user })
 }
 
-function createToken(user: User): string {
+function createToken(user: User): Object {
     const token = sign({
         exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 180),
         username: user.username,
@@ -38,5 +39,7 @@ function createToken(user: User): string {
         user_id: user.id
     }, `${process.env.LOG_KEY}`);
 
-    return token;
+    console.log("LOG MY TOKEN auth.service:", token, user);
+
+    return ({ token: token, user });
 }
