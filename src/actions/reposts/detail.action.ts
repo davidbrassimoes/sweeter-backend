@@ -8,7 +8,8 @@ const action = async (req: Request, res: Response) => {
         where: { id: +req.params.id },
         relations: {
             user: true,
-            post: true
+            post: true,
+            tagged: true,
         },
     });
     return res.send(repost);
