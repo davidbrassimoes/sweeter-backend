@@ -12,7 +12,8 @@ const action = async (req: Request, res: Response) => {
         relations: {
             followsUser: true,
             followsTag: true,
-            likes: true
+            likes: true,
+            likesRepost: true
         }
     });
     return res.send(user);

@@ -7,7 +7,8 @@ const action = async (req: Request, res: Response) => {
         relations: {
             followsUser: true,
             followsTag: true,
-            likes: true
+            likes: true,
+            likesRepost: true
         },
     });
     console.log(req.headers.authorization, " -all.action.ts");
