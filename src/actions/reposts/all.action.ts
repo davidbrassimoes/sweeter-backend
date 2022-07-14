@@ -6,7 +6,8 @@ const action = async (req: Request, res: Response) => {
     const reposts = await myDataSource.getRepository(Repost).find({
         relations: {
             user: true,
-            post: true
+            post: true,
+            tagged: true
         },
     });
     return res.json(reposts)
