@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToMany, JoinTable } from "typeorm"
 import { Post } from "./post.entity"
+import { Repost } from "./repost.entity"
 import { Tag } from "./tag.entity"
 
 @Entity()
@@ -39,5 +40,11 @@ export class User {
     })
     @JoinTable()
     likes: Post[]
+
+    @ManyToMany(() => Repost, {
+        cascade: true,
+    })
+    @JoinTable()
+    likesRepost: Repost[]
 
 }
