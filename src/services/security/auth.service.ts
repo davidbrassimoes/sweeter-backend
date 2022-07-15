@@ -5,7 +5,14 @@ import { User } from "../../entity/user.entity";
 
 export async function attemptLogin(username: string, password: string): Promise<string> {
     const repository = myDataSource.getRepository(User);
-    const user = await repository.createQueryBuilder('user').where('user.username = :username', { username }).addSelect('user.password').getOne()
+    const user = await repository.createQueryBuilder('user')
+        .where('user.username = :username', { username })
+        .addSelect('user.password')
+        .leftJoinAndSelect("user.followsUser", "followsUser")
+        .leftJoinAndSelect("user.followsTag", "followsTag")
+        .leftJoinAndSelect("user.likes", "likes")
+        .leftJoinAndSelect("user.likesRepost", "likesRepost")
+        .getOne()
 
     const match = await bcrypt.compare(password, user?.password);
 
