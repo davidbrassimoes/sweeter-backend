@@ -5,7 +5,7 @@ import { User } from "../../entity/user.entity";
 
 export async function attemptLogin(username: string, password: string): Promise<string> {
     const repository = myDataSource.getRepository(User);
-    const user = await repository.findOne({ where: { username } });
+    const user = await repository.createQueryBuilder('user').where('user.username = :username', { username }).addSelect('user.password').getOne()
 
     const match = await bcrypt.compare(password, user?.password);
 
@@ -27,7 +27,6 @@ export async function register(username: string, password: string, email: string
 
     await myDataSource.getRepository(User).save(user);
     const token = createToken(user)
-    console.log("where is user?", user, token)
     return ({ token, user })
 }
 
@@ -38,8 +37,6 @@ function createToken(user: User): Object {
         email: user.email,
         user_id: user.id
     }, `${process.env.LOG_KEY}`);
-
-    console.log("LOG MY TOKEN auth.service:", token, user);
 
     return ({ token: token, user });
 }
