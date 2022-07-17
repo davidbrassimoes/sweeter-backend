@@ -20,6 +20,9 @@ export class User {
     @Column()
     bio: string
 
+    @Column()
+    avatarColor: string
+
     @CreateDateColumn()
     createdAt: Date
 

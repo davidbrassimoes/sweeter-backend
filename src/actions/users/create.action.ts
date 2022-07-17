@@ -4,8 +4,8 @@ import { register } from "../../services/security/auth.service"
 const action = async (req: Request, res: Response) => {
     console.log('TEST!!', req.body);
     try {
-        const { username, password, email, bio } = req.body;
-        const token = await register(username, password, email, bio);
+        const { username, password, email, bio, avatarColor } = req.body;
+        const token = await register(username, password, email, bio, avatarColor);
         console.log("TOKEN: ", token);
         return res.json({ token });
     } catch (e) {

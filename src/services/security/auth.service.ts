@@ -23,7 +23,7 @@ export async function attemptLogin(username: string, password: string): Promise<
     return createToken(user);
 }
 
-export async function register(username: string, password: string, email: string, bio: string): Promise<Object> {
+export async function register(username: string, password: string, email: string, bio: string, avatarColor: string): Promise<Object> {
 
     const user = await myDataSource.getRepository(User).create();
 
@@ -31,6 +31,7 @@ export async function register(username: string, password: string, email: string
     user.password = await bcrypt.hash(password, 8);
     user.email = email;
     user.bio = bio;
+    user.avatarColor = avatarColor;
 
     await myDataSource.getRepository(User).save(user);
     const token = createToken(user)
