@@ -10,6 +10,7 @@ const action = async (req: Request, res: Response) => {
             user: true,
             post: true,
             tagged: true,
+            sweeted: true,
         },
     });
     return res.send(repost);

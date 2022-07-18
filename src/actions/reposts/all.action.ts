@@ -7,7 +7,8 @@ const action = async (req: Request, res: Response) => {
         relations: {
             user: true,
             post: true,
-            tagged: true
+            tagged: true,
+            sweeted: true,
         },
     });
     return res.json(reposts)
