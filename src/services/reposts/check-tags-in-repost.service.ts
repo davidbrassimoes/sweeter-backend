@@ -40,7 +40,7 @@ export async function checkTags(post: Repost) {
             existingTagsContent.push(t.content)
         })
 
-        const newishText = content.replace(/[.,:;?!"$-%/(*+«»><)=@&£§€{}/\\|´`~^]/g, " ")
+        const newishText = content.replace(/[.,:;?!"$-%-/(*+«»><)=@&£§€{}/\\|´`~^]/g, " ")
         const newText = newishText.replace(/#{2,}/g, "#")
         const words = newText.split(' ')
 

@@ -29,7 +29,7 @@ export async function checkUsers(post: Repost) {
             existingUsersContent.push(u.username)
         })
 
-        const newishText = content.replace(/[.,:;?!"$-%/(*+«»><)=#£&§€{}/\\|´`~^]/g, " ")
+        const newishText = content.replace(/[.,:;?!"$-%-/(*+«»><)=#£&§€{}/\\|´`~^]/g, " ")
         const newText = newishText.replace(/@{2,}/g, "@")
 
         const words = newText.split(' ')
