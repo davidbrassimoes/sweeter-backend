@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from "typeorm"
+import { User } from "./user.entity"
 
 @Entity()
 export class Tag {
@@ -8,4 +9,6 @@ export class Tag {
     @Column()
     content: string
 
+    @ManyToMany(() => User, (user) => user.followsTag)
+    followers: User[]
 }

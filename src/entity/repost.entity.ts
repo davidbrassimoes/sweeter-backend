@@ -36,5 +36,6 @@ export class Repost {
     @JoinTable()
     sweeted: User[]
 
-
+    @ManyToMany(() => User, (user) => user.likesRepost)
+    likes: User[]
 }

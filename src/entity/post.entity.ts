@@ -30,4 +30,6 @@ export class Post {
     @JoinTable()
     sweeted: User[]
 
+    @ManyToMany(() => User, (user) => user.likes)
+    likes: User[]
 }

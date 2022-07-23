@@ -26,27 +26,22 @@ export class User {
     @CreateDateColumn()
     createdAt: Date
 
-    @ManyToMany(() => User, {
-        cascade: true,
-    })
+    @ManyToMany(() => User, (user) => user.followers)
     @JoinTable()
     followsUser: User[]
 
-    @ManyToMany(() => Tag, {
-        cascade: true,
-    })
+    @ManyToMany(() => User, (user) => user.followsUser)
+    followers: User[]
+
+    @ManyToMany(() => Tag, (tag) => tag.followers)
     @JoinTable()
     followsTag: Tag[]
 
-    @ManyToMany(() => Post, {
-        cascade: true,
-    })
+    @ManyToMany(() => Post, (post) => post.likes)
     @JoinTable()
     likes: Post[]
 
-    @ManyToMany(() => Repost, {
-        cascade: true,
-    })
+    @ManyToMany(() => Repost, (repost) => repost.likes)
     @JoinTable()
     likesRepost: Repost[]
 
