@@ -39,10 +39,6 @@ export function verifyToken(req: Request, res: Response, next: NextFunction): Re
         const { user_id: id } = payload;
         const user = await myDataSource.getRepository(User).findOneBy({ id });
         req.user = user
-        // console.log("REQUEST USER: ", res.user)
-        // console.log("PAYLOAD: ", payload);
-        // console.log("USER: ", user);
-        // console.log("token.service: ", token);
         next()
     })
 

@@ -1,4 +1,4 @@
-export default function sortFeed(feed, myUser) {
+export function sortFeed(feed) {
 
     feed.sort((a, b) => {
         const fa = a.createdAt;
@@ -12,7 +12,9 @@ export default function sortFeed(feed, myUser) {
         }
         return 0;
     })
+}
 
+export function sortLikes(feed, myUser) {
     feed.map(post => {
         post.myUserLikes = false
 

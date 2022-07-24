@@ -3,7 +3,7 @@ import { User } from "../../entity/user.entity";
 import { Request, Response } from "express";
 import { Post } from "../../entity/post.entity";
 import { Repost } from "../../entity/repost.entity";
-import sortFeed from "../../services/feed/sort-feed";
+import { sortFeed, sortLikes } from "../../services/feed/sort-feed";
 
 const action = async (req: Request, res: Response) => {
     const myUser = await myDataSource
@@ -62,7 +62,8 @@ const action = async (req: Request, res: Response) => {
 
 
     const feed = [...posts, ...reposts]
-    sortFeed(feed, myUser)
+    sortFeed(feed)
+    sortLikes(feed, myUser)
     const data = { myUser, feed }
 
     return res.json(data)
